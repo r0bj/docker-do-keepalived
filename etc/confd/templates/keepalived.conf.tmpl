@@ -10,7 +10,7 @@ vrrp_script chk_manual_disabled {
 
 vrrp_instance VI_1 {
     interface eth1
-    state BACKUP
+    state {{ getv "/keepalived/vrrp/state" "BACKUP" }}
     priority {{ getv "/keepalived/vrrp/priority" }}
 
     virtual_router_id 1
