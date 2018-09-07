@@ -1,0 +1,32 @@
+global_defs {
+    enable_script_security
+    script_user root
+}
+
+vrrp_script chk_manual_disabled {
+    script "/bin/bash -c 'if [ -e /etc/disabled/lb ]; then exit 1; else exit 0; fi'"
+    interval 3
+}
+
+vrrp_instance VI_1 {
+    interface eth1
+    state BACKUP
+    priority {{ getv "/keepalived/vrrp/priority" }}
+
+    virtual_router_id 1
+    unicast_src_ip {{ getv "/keepalived/unicast/src/ip" }}
+    unicast_peer {
+        {{ getv "/keepalived/unicast/peer" }}
+    }
+
+    authentication {
+        auth_type PASS
+        auth_pass {{ getv "/keepalived/auth/pass" "secret" }}
+    }
+
+    track_script {
+        chk_manual_disabled
+    }
+
+    notify_master /master.sh
+}

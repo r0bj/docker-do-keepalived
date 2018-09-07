@@ -1,0 +1,9 @@
+[template]
+src = "keepalived.conf.tmpl"
+dest = "/etc/keepalived/keepalived.conf"
+keys = [
+    "/keepalived/vrrp/priority",
+    "/keepalived/unicast/src/ip",
+    "/keepalived/unicast/peer",
+    "/keepalived/auth/pass"
+]
