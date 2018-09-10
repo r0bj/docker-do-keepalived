@@ -6,5 +6,7 @@ keys = [
     "/keepalived/vrrp/priority",
     "/keepalived/unicast/src/ip",
     "/keepalived/unicast/peer",
-    "/keepalived/auth/pass"
+    "/keepalived/auth/pass",
+    "/keepalived/check/ip",
+    "/keepalived/check/port"
 ]
