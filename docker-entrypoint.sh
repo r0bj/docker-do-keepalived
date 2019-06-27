@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 confd -onetime -backend env
 
